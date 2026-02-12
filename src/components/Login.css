@@ -1,0 +1,24 @@
+.Login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.Login h2 {
+  font-size: 2rem;
+  font-weight: 300;
+  margin: .5rem;
+}
+
+.Login textarea {
+  resize: none;
+  border-radius: 5rem;
+  padding: .5rem;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  margin-bottom: .5rem;
+}
+.Login textarea::placeholder {
+  color: #0006;
+}
