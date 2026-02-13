@@ -1,15 +1,18 @@
+import CustomInput from "../components/CustomInput"
+import { AtSign, KeyRound, Eye, EyeClosed } from "lucide-react"
 import '../components/Login.css'
 
 const Login = () => {
   return ( 
     <form className="Login">
-      <h2>Login</h2>
-      <div>
-        <textarea rows={1} placeholder='email'></textarea>
-      </div>
-      <div>
-        <textarea rows={1} placeholder='contraseña'></textarea>
-      </div>
+      <h2>Limonex</h2>
+      <CustomInput 
+        IcLeft={AtSign} 
+        ph="email" />
+      <CustomInput 
+        IcLeft={KeyRound} 
+        ph="contraseña" 
+        IcRight={EyeClosed}/>
       <button>Ingresar</button>
     </form>
    )
