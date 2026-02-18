@@ -1,76 +1,91 @@
-import { AtSign, KeyRound, Eye, EyeClosed } from "lucide-react";
-import "../components/Login.css";
-import { useRef, useState } from "react";
+import { Mail, Lock, Eye, EyeClosed } from 'lucide-react'
+import '../components/Login.css'
+import { useState, useEffect } from 'react'
+import { useAuth } from '../context/AuthContext'
 
 const Login = () => {
-  const [hidden, setHidden] = useState(true);
-  const [visiblePass, setVisiblePass] = useState("");
-  const [hiddenPass, setHiddenPass] = useState("");
+  const [hidden, setHidden] = useState(true)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
-  const inputRef = useRef(null);
+  const { login } = useAuth()
 
   const handleHidden = () => {
-    if (navigator.vibrate) navigator.vibrate(1);
-    setHidden(!hidden);
-  };
+    if (navigator.vibrate) navigator.vibrate(1)
+    setHidden(!hidden)
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (navigator.vibrate) navigator.vibrate(1);
-    console.log("Hello Submit");
-  };
+  const handleSubmit = async e => {
+    e.preventDefault()
+    if (navigator.vibrate) navigator.vibrate(1)
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      const form = e.target.form;
-      const index = Array.prototype.indexOf.call(form, e.target);
-      form.elements[index + 1]?.focus();
+    if (!email || !password) {
+      setError('Todos los campos son obligatorios')
+      return
     }
-  };
 
-  const handleChange = (e) => {
-    const { value } = e.target;
-    setVisiblePass(value);
-    const x = "×".repeat(value.length);
-    setHiddenPass(x);
-  };
+    try {
+      setLoading(true)
+      await login(email, password)
+    } catch (error) {
+      setError('Error al iniciar sesión')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError('')
+      }, 5000)
+
+      return () => clearTimeout(timer)
+    }
+  }, [error])
 
   return (
-    <form className="Login" onSubmit={handleSubmit}>
+    <div className="Login">
+      <img />
       <h2>Limonex</h2>
+      <h3>Ingresa a tu cuenta para continuar.</h3>
 
-      <div className="input-cont">
-        <AtSign className="icon-l" />
-        <textarea
-          enterKeyHint="next"
-          onKeyDown={handleKeyDown}
-          rows={1}
-          placeholder="email"
-        ></textarea>
-      </div>
+      <form onSubmit={handleSubmit}>
+        {error && <div className="modal-error">{error}</div>}
 
-      <div className="input-cont">
-        <KeyRound className="icon-l" />
-        <textarea
-          value={hidden ? hiddenPass : visiblePass}
-          enterKeyHint="next"
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          rows={1}
-          ref={inputRef}
-          placeholder="contraseña"
-        ></textarea>
-        {hidden ? (
-          <EyeClosed onClick={handleHidden} className="icon-r" />
-        ) : (
-          <Eye onClick={handleHidden} className="icon-r" />
-        )}
-      </div>
+        <div className="input-cont">
+          <Mail className="icon-l" />
+          <input
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            type="email"
+            placeholder="email"
+          />
+        </div>
 
-      <button>Ingresar</button>
-    </form>
-  );
-};
+        <div className="input-cont">
+          <Lock className="icon-l" />
+          <input
+            type={hidden ? 'password' : 'text'}
+            placeholder="contraseña"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+          {hidden ? (
+            <EyeClosed onClick={handleHidden} className="icon-r" />
+          ) : (
+            <Eye onClick={handleHidden} className="icon-r" />
+          )}
+        </div>
 
-export default Login;
+        <button disabled={loading}>
+          {loading ? 'Verificando...' : 'Iniciar sesión'}
+        </button>
+      </form>
+    </div>
+  )
+}
+
+export default Login

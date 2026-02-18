@@ -1,0 +1,16 @@
+.TabBar {
+  display: flex;
+  padding: .7rem 0;
+  padding-left: .5rem;
+  background-color: #fff;
+  box-shadow: .2rem .5rem .8rem #1c713936;
+}
+.TabBar .tab {
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  background-color: #089f73;
+  color: #fff;
+  font-weight: 900;
+  margin-right: .5rem;
+  text-transform: uppercase;
+}
