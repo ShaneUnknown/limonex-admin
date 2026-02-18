@@ -1,20 +1,36 @@
-import { useNavigate } from "react-router"
 import { useAuth } from "../../context/AuthContext";
+import { LogOut } from "lucide-react";
 
-import { LogOut } from "lucide-react"
-import  './TopBar.css'
+import "../TopBar.css";
 
 const TopBar = () => {
-  
-  const { logout } = useAuth()
-  const navigate = useNavigate()
-  
-  return (
-    <div className='TopBar'>
-      <h2>Admin</h2>
-      <LogOut onClick={logout} className='icon'/>
-    </div>
-  )
-}
+  const { logout } = useAuth();
 
-export default TopBar
+  const tabs = [
+    {
+      name: "Pedidos",
+    },
+    {
+      name: "Personal",
+    },
+  ];
+
+  return (
+    <div className="TopBar">
+      <div className="title">
+        <h2>Admin</h2>
+        <LogOut onClick={logout} className="icon" />
+      </div>
+
+      <div className="tab-bar">
+        {tabs.map((tab) => (
+          <div key={tab.name} className="tab">
+            {tab.name}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default TopBar;

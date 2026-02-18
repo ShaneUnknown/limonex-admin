@@ -1,0 +1,42 @@
+.TopBar .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 .5rem;
+  padding-top: .5rem;
+  background-color: #fff;
+}
+.TopBar .title h2 {
+  margin: 0;
+  padding: .5rem;
+}
+.TopBar .title h3 {
+  padding: .4rem .5rem;
+  border: .1rem solid;
+  border-radius: .5rem;
+  text-transform: uppercase;
+  font-size: .8rem;
+}
+.TopBar .title .icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: .5rem;
+  border: .1rem solid;
+  border-radius: .5rem;
+}
+.TopBar .tab-bar {
+  display: flex;
+  padding: .7rem 0;
+  padding-left: .5rem;
+  background-color: #fff;
+  box-shadow: .2rem .5rem .8rem #1c713936;
+}
+.TopBar .tab-bar .tab {
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  background-color: #089f73;
+  color: #fff;
+  font-weight: 900;
+  margin-right: .5rem;
+  text-transform: uppercase;
+}

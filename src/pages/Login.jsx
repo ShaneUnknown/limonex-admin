@@ -1,77 +1,94 @@
-import { Mail, Lock, Eye, EyeClosed } from 'lucide-react'
-import '../components/Login.css'
-import { useState, useEffect } from 'react'
-import { useAuth } from '../context/AuthContext'
+import { Mail, Lock, Eye, EyeClosed } from "lucide-react";
+import icBottle from "../assets/ic_bottle.svg";
+import "../components/Login.css";
+import { useState, useEffect } from "react";
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
-  const [hidden, setHidden] = useState(true)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  const [selected, setSelected] = useState(2);
+  const [hidden, setHidden] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const { login } = useAuth()
+  const { login } = useAuth();
 
   const handleHidden = () => {
-    if (navigator.vibrate) navigator.vibrate(1)
-    setHidden(!hidden)
-  }
+    if (navigator.vibrate) navigator.vibrate(1);
+    setHidden(!hidden);
+  };
 
-  const handleSubmit = async e => {
-    e.preventDefault()
-    if (navigator.vibrate) navigator.vibrate(1)
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (navigator.vibrate) navigator.vibrate(1);
 
     if (!email || !password) {
-      setError('Todos los campos son obligatorios')
-      return
+      setError("Todos los campos son obligatorios");
+      return;
     }
 
     try {
-      setLoading(true)
-      await login(email, password)
+      setLoading(true);
+      await login(email, password);
     } catch (error) {
-      setError('Error al iniciar sesión')
+      setError("Error al iniciar sesión");
+      console.log(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
+
+  const cssInput = (index) => {
+    let css = "input-cont";
+
+    if (index === selected) {
+      css += " selected";
+    }
+
+    return css;
+  };
 
   useEffect(() => {
     if (error) {
       const timer = setTimeout(() => {
-        setError('')
-      }, 5000)
+        setError("");
+      }, 5000);
 
-      return () => clearTimeout(timer)
+      return () => clearTimeout(timer);
     }
-  }, [error])
+  }, [error]);
 
   return (
     <div className="Login">
-      <img />
+      <img src={icBottle} />
       <h2>Limonex</h2>
       <h3>Ingresa a tu cuenta para continuar.</h3>
 
       <form onSubmit={handleSubmit}>
         {error && <div className="modal-error">{error}</div>}
 
-        <div className="input-cont">
+        <div className={cssInput(0)} onClick={() => setSelected(0)}>
           <Mail className="icon-l" />
           <input
+            onFocus={() => setSelected(0)}
+            onBlur={() => setSelected(2)}
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             type="email"
             placeholder="email"
           />
         </div>
 
-        <div className="input-cont">
+        <div className={cssInput(1)} onClick={() => setSelected(1)}>
           <Lock className="icon-l" />
           <input
-            type={hidden ? 'password' : 'text'}
+            onFocus={() => setSelected(1)}
+            onBlur={() => setSelected(2)}
+            type={hidden ? "password" : "text"}
             placeholder="contraseña"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
           {hidden ? (
             <EyeClosed onClick={handleHidden} className="icon-r" />
@@ -81,11 +98,11 @@ const Login = () => {
         </div>
 
         <button disabled={loading}>
-          {loading ? 'Verificando...' : 'Iniciar sesión'}
+          {loading ? "Verificando..." : "Iniciar sesión"}
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

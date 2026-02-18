@@ -3,13 +3,13 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDWqjIG_utj1FF-C1ZNH0-EOsvGGrSa3nc",
-  authDomain: "limonex-d1dfa.firebaseapp.com",
-  projectId: "limonex-d1dfa",
-  storageBucket: "limonex-d1dfa.firebasestorage.app",
-  messagingSenderId: "380445576895",
-  appId: "1:380445576895:web:7d1f849ad75152f9e1c00a",
-  measurementId: "G-QLWEXFLR5D"
+  apiKey: "AIzaSyB-A2Ifn-iQhjAoA1wILLaNk1nTBlpDh8A",
+  authDomain: "limonex-f5d52.firebaseapp.com",
+  projectId: "limonex-f5d52",
+  storageBucket: "limonex-f5d52.firebasestorage.app",
+  messagingSenderId: "939453775556",
+  appId: "1:939453775556:web:a77b6a39c52409959a1391",
+  measurementId: "G-0SEGKC2FZN"
 };
 
 const app = initializeApp(firebaseConfig);

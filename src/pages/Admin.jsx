@@ -1,15 +1,13 @@
-import TopBar from "../components/admin/TopBar"
-import TabBar from "../components/admin/TabBar"
+import TopBar from "../components/admin/TopBar";
 
-import '../components/admin/Admin.css'
+import "../components/admin/Admin.css";
 
 const Admin = () => {
   return (
-    <div className='Admin'>
+    <div className="Admin">
       <TopBar />
-      <TabBar />
     </div>
-  )
-}
+  );
+};
 
-export default Admin
+export default Admin;

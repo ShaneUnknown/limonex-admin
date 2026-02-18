@@ -12,10 +12,12 @@
   box-shadow: .2rem .2rem .8rem #5d928843;
 }
 .Login img {
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: .7rem;
   margin: 1.7rem;
+  padding: .7rem;
+  object-fit: contain;
   background-image: linear-gradient(-45deg, #005229, #00d01c);
 }
 .Login h2 {
@@ -43,8 +45,12 @@
   border-radius: 1rem;
   width: 100%;
   box-sizing: border-box;
-  background-color: #effff0;
+  background-color: #f4fff5;
   border: .1rem solid #a4e0a4;
+  transition: .3s border;
+}
+.Login .input-cont.selected {
+  border: .2rem solid #368536;
 }
 .Login .icon-l,
 .Login .icon-r {
