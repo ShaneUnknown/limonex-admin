@@ -1,0 +1,42 @@
+.OrderContainer {
+  padding: .5rem;
+}
+.OrderContainer .order-item {
+  background-color: #fff;
+  border-radius: .5rem;
+  padding: .5rem;
+  box-shadow: .1rem .1rem .4rem #276c5853;
+  margin-bottom: .5rem;
+}
+.OrderContainer .order-item .cont {
+  border: .2rem solid #76dfbb;
+  border-radius: .5rem;
+  padding: .5rem;
+}
+.OrderContainer .order-item h3 {
+  margin: .1rem 0;
+}
+.OrderContainer .order-item p {
+  margin: .3rem 0;
+  
+}
+.OrderContainer .order-item .group {
+  display: flex;
+  justify-content: space-between;
+}
+.OrderContainer .order-item .group .timeago {
+  font-style: italic;
+  color: #666;
+}
+.OrderContainer .order-item.new h4 {
+  margin: 0;
+}
+.OrderContainer .order-item.new .cont{
+  padding: .5rem;
+  text-align: center;
+  border-color: #000;
+}
+.OrderContainer .order-item.new .icon {
+  width: 3rem;
+  height: 2.5rem;
+}
